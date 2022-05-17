@@ -73,7 +73,7 @@ def get_inputs(labels):
     """
     string_inputs = []
     for label in labels:
-        string_inputs.append(label)
+        string_inputs.append(input(label))
     return string_inputs
 
 
