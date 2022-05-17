@@ -18,7 +18,9 @@ def update_transaction():
 
 def delete_transaction():
     view.print_error_message("Not implemented yet.")
-
+    id ='TiA9s!8n-c'
+    sales.delete_transaction(id)
+    
 
 def get_biggest_revenue_transaction():
     view.print_error_message("Not implemented yet.")

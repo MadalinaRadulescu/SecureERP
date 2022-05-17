@@ -28,8 +28,13 @@ def update_transaction():
     view.print_error_message("Not implemented yet.")
 
 
-def delete_transaction():
-    view.print_error_message("Not implemendef list_transactions():ted yet.")
+def delete_transaction(id):
+    # view.print_error_message("Not implemendef list_transactions():ted yet.")
+    x=list_transactions()
+    for index,line in enumerate(x):
+        if line[0]==id:
+            x.pop(index)
+    data_manager.write_table_to_file(DATAFILE,x)
 
 
 def get_biggest_revenue_transaction():
