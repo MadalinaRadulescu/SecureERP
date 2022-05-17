@@ -1,9 +1,11 @@
+from model.crm.crm import HEADERS
 from model.sales import sales
 from view import terminal as view
 
 
 def list_transactions():
-    view.print_error_message("Not implemented yet.")
+    data = sales.list_transactions()
+    view.print_table(sales.HEADERS, data)
 
 
 def add_transaction():

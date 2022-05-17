@@ -1,3 +1,6 @@
+from wsgiref import headers
+
+
 def print_menu(title, list_options):
     """Prints options in standard menu format like this:
 
@@ -11,7 +14,10 @@ def print_menu(title, list_options):
         title (str): the title of the menu (first row)
         list_options (list): list of the menu options (listed starting from 1, 0th element goes to the end)
     """
-    pass
+    print(title+":")
+    for index in range(len(list_options)):
+        print(f"({index})  {list_options[index]}")
+        
 
 
 def print_message(message):
@@ -20,7 +26,7 @@ def print_message(message):
     Args:
         message: str - the message
     """
-    pass
+    print(message)
 
 
 def print_general_results(result, label):
@@ -39,13 +45,14 @@ def print_general_results(result, label):
 # |--------|------------|----------|
 # |   1    | Sidewinder | missile  |
 # \-----------------------------------/
-def print_table(table):
+def print_table(headers, table):
+    import tabulate
     """Prints tabular data like above.
 
     Args:
         table: list of lists - the table to print out
     """
-    pass
+    print(tabulate.tabulate(table, headers, tablefmt = 'fancy_grid'))
 
 
 def get_input(label):
@@ -54,7 +61,8 @@ def get_input(label):
     Args:
         label: str - the label before the user prompt
     """
-    pass
+    return input(label)
+    
 
 
 def get_inputs(labels):
@@ -63,7 +71,11 @@ def get_inputs(labels):
     Args:
         labels: list - the list of the labels to be displayed before each prompt
     """
-    pass
+    string_inputs = []
+    for label in labels:
+        string_inputs.append(label)
+    return string_inputs
+
 
 
 def print_error_message(message):
@@ -72,4 +84,4 @@ def print_error_message(message):
     Args:
         message: str - the error message
     """
-    pass
+    print(message)
