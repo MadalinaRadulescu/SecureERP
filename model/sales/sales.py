@@ -21,7 +21,8 @@ def list_transactions():
     return sales
 
 def add_transaction():
-    view.print_error_message("Not implemented yet.")
+    new_id = util.generate_id()
+    pass
 
 
 def update_transaction():
