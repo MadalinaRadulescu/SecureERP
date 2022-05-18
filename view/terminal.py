@@ -1,3 +1,4 @@
+from tabulate import tabulate
 from wsgiref import headers
 
 
@@ -46,13 +47,12 @@ def print_general_results(result, label):
 # |   1    | Sidewinder | missile  |
 # \-----------------------------------/
 def print_table(headers, table):
-    import tabulate
     """Prints tabular data like above.
 
     Args:
         table: list of lists - the table to print out
     """
-    print(tabulate.tabulate(table, headers, tablefmt = 'fancy_grid'))
+    print(tabulate(table, headers, tablefmt = 'fancy_grid'))
 
 
 def get_input(label):

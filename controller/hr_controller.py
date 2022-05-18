@@ -1,13 +1,19 @@
+from cProfile import label
+from wsgiref import headers
 from model.hr import hr
 from view import terminal as view
 
 
 def list_employees():
-    view.print_error_message("Not implemented yet.")
+    hr_table = hr.list_employees()
+    headers = hr.HEADERS
+    view.print_table(headers, hr_table)
+    #view.print_error_message("Not implemented yet.")
 
 
 def add_employee():
-    view.print_error_message("Not implemented yet.")
+    hr.get_add_employee()
+    # view.print_error_message("Not implemented yet.")
 
 
 def update_employee():
@@ -15,7 +21,9 @@ def update_employee():
 
 
 def delete_employee():
-    view.print_error_message("Not implemented yet.")
+    id = view.get_input("Enter id")
+    hr.delete_employee(id)
+    #view.print_error_message("Not implemented yet.")
 
 
 def get_oldest_and_youngest():
