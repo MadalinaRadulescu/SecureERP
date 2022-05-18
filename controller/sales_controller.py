@@ -9,7 +9,9 @@ def list_transactions():
 
 
 def add_transaction():
-    view.print_error_message("Not implemented yet.")
+    new_transaction = view.get_inputs(sales.HEADERS[1:])
+    sales.get_add_transaction(new_transaction)
+    
 
 
 def update_transaction():
