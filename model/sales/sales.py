@@ -20,19 +20,32 @@ HEADERS = ["Id", "Customer", "Product", "Price", "Date"]
 def list_transactions():
     sales = data_manager.read_table_from_file(DATAFILE)
     return sales
+#print(list_transactions())
 
 def get_add_transaction(new_transaction):
     data = list_transactions()
     #new_transaction = get_inputs("Customer:\n", "Product:\n", "Price:\n", "Date:\n")
-    new_id = util.generate_id(number_of_small_letters=4, number_of_capital_letters=2, number_of_digits=2,number_of_special_chars=2, allowed_special_chars=r"_+-!")
+    new_id = util.generate_id()
     new_transaction.insert(0, new_id)
     data.append(new_transaction)
     data_manager.write_table_to_file(DATAFILE, data)
 
 #print(add_transaction(new_transaction))
 
-def update_transaction():
-    view.print_error_message("Not implemented yet.")
+def check_id(ID):
+    data = list_transactions()
+    for i in data:
+        if i[0] == ID:
+            return ID
+    return None
+        
+def replace_uptransaction(replace_item, option, user_id):
+    data = list_transactions()
+    for item in data:
+        if item[0] == user_id:
+            item[int(option)] = replace_item
+    data_manager.write_table_to_file(DATAFILE, data)
+
 
 
 def delete_transaction(id):

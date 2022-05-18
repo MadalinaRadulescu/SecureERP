@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from model.crm.crm import HEADERS
 from model.sales import sales
 from view import terminal as view
@@ -15,7 +16,20 @@ def add_transaction():
 
 
 def update_transaction():
-    view.print_error_message("Not implemented yet.")
+    while True:
+        ID = view.get_input("enter ID: ")
+        user_id = sales.check_id(ID)
+        if user_id == None:
+            view.print_error_message("Not a valid ID")
+        option = view.get_input("Choose what you want to modify: \n1. Customer\n2. Product\n3.Price\n4. Date ")
+        if option == "1" or option == "2" or option == "3" or option == "4": 
+            replace_item = view.get_input("Enter replacement: ")
+            sales.replace_uptransaction(replace_item, option, user_id) 
+            break
+        else:
+            view.print_message("Not a valid option")
+
+        
 
 
 def delete_transaction():
