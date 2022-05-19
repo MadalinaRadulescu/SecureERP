@@ -49,8 +49,7 @@ def replace_uptransaction(replace_item, option, user_id):
 
 
 def delete_transaction(id):
-    # view.print_error_message("Not implemendef list_transactions():ted yet.")
-    x=list_transactions()
+    x = list_transactions()
     for index,line in enumerate(x):
         if line[0]==id:
             x.pop(index)
@@ -58,16 +57,47 @@ def delete_transaction(id):
 
 
 def get_biggest_revenue_transaction():
-    view.print_error_message("Not implemented yet.")
+    x = list_transactions()
+    my_list = []
+    for element in (x):
+        my_list.append(float(element[3]))
+    # print(my_list)
+    biggest_revenue_transaction = max(my_list)
+    return biggest_revenue_transaction
 
 
 def get_biggest_revenue_product():
-    view.print_error_message("Not implemented yet.")
+    x =list_transactions()
+    list2 =[]
+    list3=[]
+
+    for i in x:
+        list3.append(i)
+        list2.append(float(i[3]))
+    max_sum = max(list2)
+    for i in list3:
+        for j in i:
+            if str(j) == str(int(max_sum)):
+                biggest_revenue_product = i[2]
+    return biggest_revenue_product
 
 
-def count_transactions_between():
-    view.print_error_message("Not implemented yet.")
+def count_transactions_between(year1, year2):
+    data = list_transactions()
+    list_trans = []
+    for item in data:
+        year = item[4][:4]
+        if int(year)>=int(year1) and int(year)<=int(year2):
+            list_trans.append(item)
+    return len(list_trans)
 
 
-def sum_transactions_between():
-    pass
+def sum_transactions_between(year1, year2):
+    data = list_transactions()
+    list_trans = []
+    for item in data:
+        year = item[4][:4]
+        transaction = float(item[3])
+        if int(year) >= int(year1) and int(year)<=int(year2):
+            list_trans.append(transaction)
+    return sum(list_trans)

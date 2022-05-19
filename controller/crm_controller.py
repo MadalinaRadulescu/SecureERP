@@ -3,23 +3,41 @@ from view import terminal as view
 
 
 def list_customers():
-    view.print_error_message("Not implemented yet.")
+    data = crm.list_customers()
+    view.print_table(crm.HEADERS, data)
 
 
 def add_customer():
-    view.print_error_message("Not implemented yet.")
+    new_customer = view.get_inputs(crm.HEADERS[1:])
+    crm.get_add_customer(new_customer)
 
 
 def update_customer():
-    view.print_error_message("Not implemented yet.")
+    while True:
+        ID = view.get_input("enter ID: ")
+        user_id = crm.check_id(ID)
+        if user_id == None:
+            view.print_error_message("Not a valid ID")
+        option = view.get_input("Choose what you want to modify: \n1. Name\n2. Email\n3.Subscribed\n")
+        if option == "1" or option == "2" or option == "3": 
+            replace_item = view.get_input("Enter replacement: ")
+            crm.replace_updatecustomer(replace_item, option, user_id) 
+            break
+        else:
+            view.print_message("Not a valid option")
 
 
 def delete_customer():
-    view.print_error_message("Not implemented yet.")
+    entry_id = view.get_input("Enter ID: ")
+    id = crm.check_id(entry_id)
+    if id == None:
+        view.print_error_message("Not a valid id.")
+    crm.delete_customer(id)
 
 
 def get_subscribed_emails():
-    view.print_error_message("Not implemented yet.")
+    list_emails = crm.get_subscribed_emails()
+    view.print_subscribed_emails(list_emails)
 
 
 def run_operation(option):

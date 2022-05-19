@@ -33,25 +33,38 @@ def update_transaction():
 
 
 def delete_transaction():
-    view.print_error_message("Not implemented yet.")
-    id ='TiA9s!8n-c'
+    entry_id = view.get_input("Enter ID: ")
+    id = sales.check_id(entry_id)
+    if id == None:
+        view.print_error_message("Not a valid id.")
     sales.delete_transaction(id)
+    
     
 
 def get_biggest_revenue_transaction():
-    view.print_error_message("Not implemented yet.")
+    #list_transactions()
+    x = sales.get_biggest_revenue_transaction()
+    view.print_the_biggest_price(x)
 
 
 def get_biggest_revenue_product():
-    view.print_error_message("Not implemented yet.")
+    #list_transactions() 
+    x = sales.get_biggest_revenue_product()
+    view.print_the_biggest_product(x)
 
 
 def count_transactions_between():
-    view.print_error_message("Not implemented yet.")
+    year1 = view.get_input("Enter first year: ")
+    year2 = view.get_input("Enter second year: ")
+    number_transaction = sales.count_transactions_between(year1, year2)
+    view.print_count_transaction(number_transaction)
 
 
 def sum_transactions_between():
-    view.print_error_message("Not implemented yet.")
+    year1 = view.get_input("Enter first year: ")
+    year2 = view.get_input("Enter second year: ")
+    sum_transaction = sales.sum_transactions_between(year1, year2)
+    view.print_sum_transaction(sum_transaction)
 
 
 def run_operation(option):

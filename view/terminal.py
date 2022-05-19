@@ -85,3 +85,32 @@ def print_error_message(message):
         message: str - the error message
     """
     print(message)
+
+def print_count_transaction(number):
+    print(f"Number of transactions: {number}")
+
+def print_sum_transaction(number):
+    print(f"Sum of transactions: {number}")
+
+def print_the_biggest_price(number):
+    print(f"The biggest price: {number}")
+
+def print_the_biggest_product(message):
+    print("The biggest transaction product: " + message)
+
+def print_average_age(number):
+    print(f"The average age is {number}")
+
+def print_oldest_youngest(name1, name2):
+    print(f"{name1}           {name2}")
+
+def print_subscribed_emails(list):
+    print("These are the subscribed emails: ")
+    for item in list:
+        print(item)
+
+def print_employees_with_clearance(clr, number):
+    print(f"Employees with clearance level {clr}: {number}")
+
+def print_employees_per_dep(dict):
+    print(dict)

@@ -2,36 +2,81 @@ from cProfile import label
 from wsgiref import headers
 from model.hr import hr
 from view import terminal as view
+import datetime
 
 
 def list_employees():
     hr_table = hr.list_employees()
     headers = hr.HEADERS
     view.print_table(headers, hr_table)
-    #view.print_error_message("Not implemented yet.")
 
 
 def add_employee():
-    hr.get_add_employee()
-    # view.print_error_message("Not implemented yet.")
+    new_employee = view.get_inputs(hr.HEADERS[1:])
+    hr.get_add_employee(new_employee)
 
 
 def update_employee():
-    view.print_error_message("Not implemented yet.")
+    hr_table = hr.list_employees()
+    id = view.get_input("ID or exit ")
+    if id == 'exit':
+        quit()
+    else:
+        while True:
+            for item in hr_table:
+                if item[0] == id:
+                    update_employee_data = view.get_input("Choose what you want to update? 1: name | 2: date of birth | 3: department | 4: clearance | 0: Exit  >")
+                    if update_employee_data == "1":
+                        name = view.get_input("\nNew name: ")
+                        item[1] = name
+                    if update_employee_data == "2":
+                        d_birth = view.get_input("\nNew date of birth: ")
+                        item[2] = d_birth
+                    if update_employee_data == "3":
+                        depart = view.get_input("\nNew department: ")
+                        item[3] = depart
+                    if update_employee_data == "4":
+                        clr = view.get_input("\nNew clearance: ")
+                        item[4] = clr
+                    if update_employee_data == "0":
+                        display_menu()
+            hr.get_update_employee(hr_table)
+            new_update = view.get_input("\nUpdate again ? y/n : ")
+            if new_update == "y":
+                True
+            else:
+                break
 
 
 def delete_employee():
-    id = view.get_input("Enter id")
-    hr.delete_employee(id)
-    #view.print_error_message("Not implemented yet.")
+    hr_table = hr.list_employees()
+    id = view.get_input("ID or exit ")
+    for item in hr_table:
+        if item[0] == id:
+            hr_table.remove(item)
+        if id == "exit":
+            display_menu
+    hr.get_update_employee(hr_table)
+    view.get_input('\nPress Enter for menu')
 
 
 def get_oldest_and_youngest():
-    view.print_error_message("Not implemented yet.")
+    hr_table = hr.list_employees()
+    sorted_hr_table = sorted(hr_table, key = hr.take_second)
+    old_young = [sorted_hr_table[0][1], sorted_hr_table[-1][1]]
+    view.print_message('Oldest:       Youngest:')
+    view.print_oldest_youngest(old_young[0], old_young[1])
+    view.get_input('\nPress Enter for menu')
 
 
 def get_average_age():
-    view.print_error_message("Not implemented yet.")
+    now = datetime.datetime.now().year
+    hr_table = hr.list_employees()
+    dates = [int(date[2][0:4]) for date in hr_table]
+    average_birth = sum(dates)//len(dates)
+    average_age = now - average_birth
+    view.print_average_age(average_age)
+    view.get_input('\nPress Enter for menu')
 
 
 def next_birthdays():
@@ -39,11 +84,17 @@ def next_birthdays():
 
 
 def count_employees_with_clearance():
-    view.print_error_message("Not implemented yet.")
+    clearance = view.get_input("Enter Clearance: ")
+    x = hr.count_employees_with_clearance(clearance)
+    view.print_employees_with_clearance(clearance, x)
+    
+    
 
 
 def count_employees_per_department():
-    view.print_error_message("Not implemented yet.")
+    employeer_per_dep = hr.count_employees_per_department()
+    view.print_employees_per_dep(employeer_per_dep)
+
 
 
 def run_operation(option):
