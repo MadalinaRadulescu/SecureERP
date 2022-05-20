@@ -43,7 +43,7 @@ def next_birthdays():
     hr_table = data_manager.read_table_from_file(DATAFILE)
     birthdays = []
     for item in hr_table:
-        birthdays.append(item[3])
+        birthdays.append(item[2])
     return birthdays
 
 def count_employees_with_clearance(clr):
@@ -53,23 +53,20 @@ def count_employees_with_clearance(clr):
         if int(item[4]) >= int(clr):
             count_clr+=1
     return count_clr
-def get_departament_list():
-    data = list_employees()
-    list=[]
-    for item in data:
-        if item[3] not in list:
-            list.append(item[3])
-    return list
 
 def count_employees_per_department():
     data = list_employees()
-    dict_employees_per_department = {}
-    list_keys_for_dict = get_departament_list()
-    for item in data:
-        if item[3] in list_keys_for_dict:
-            dict_employees_per_department[item[3]] += 1
+    y = []
+    for elem in data:
+        y.append(elem[3])
+    x =[0]
+    dict_employees_per_department = dict(zip(y, x))
+    # list_keys_for_dict = get_departament_list()
+    for item in y:
+        if item in dict_employees_per_department:
+            dict_employees_per_department[item] += 1
         else:
-            dict_employees_per_department[item[3]] = 1
+            dict_employees_per_department[item] = 1
     return dict_employees_per_department
    
 
